@@ -3,12 +3,12 @@
 
 # Step 0: Init
 intitialize git and npm dependencies
-    - express
-    - body-parser
-    - morgan
-    - mongoose
-    - mongodb
-    - cors
+- express
+- body-parser
+- morgan
+- mongoose
+- mongodb
+- cors
 # Step 1: Express
 Set up server.js file
     - express: ports, listen
@@ -98,7 +98,7 @@ Set up routes on server
         })
     ```
 
-# Step 7: Client controllers 
+# Step 8: Client controllers 
     Set up angular controllers and services to handle user intent
     ```
     angular.module('myApp.users',[])
