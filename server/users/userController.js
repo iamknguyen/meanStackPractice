@@ -37,8 +37,7 @@ module.exports = {
                     name: req.body.name,
                     role: req.body.role
                 }
-                return "stuff";
-                //return User.create(newUser);
+                return User.create(newUser);
             }
          })
          .then(result=>{

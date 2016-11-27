@@ -9,7 +9,12 @@ angular.module('myApp.users',[])
     // Initialize user ng-model(from html) can have an object to refer to
     $scope.user = {};
     $scope.addUser = ()=>{
-        console.log($scope.user);
+        console.log("Attempting to post...", $scope.user);
+        UserService
+            .postUser($scope.user)
+            .then(res=>{
+                console.log("What you posted",res);
+            })
     }
 
     // Use the service you created to get all items in dB
@@ -25,7 +30,7 @@ angular.module('myApp.users',[])
 })
 .factory('UserService', function($http){
     
-    const getAllUsers = function(){
+    const getAllUsers = ()=>{
         return $http({
             method: "GET",
             url: '/api/users'
@@ -35,8 +40,17 @@ angular.module('myApp.users',[])
             return response.data;
         })
     }
+
+    const postUser = (newUser) =>{
+        return $http({
+            method: "POST",
+            url: '/api/users',
+            data: newUser
+        })
+    }
     // return the services created
     return {
-        getAllUsers: getAllUsers
+        getAllUsers: getAllUsers,
+        postUser: postUser
     }
 })
