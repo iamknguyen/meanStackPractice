@@ -17,6 +17,7 @@ Set up server.js file
         app.use(express.static(__dirname + '/../../public'));    
         ```
 # Step 2: Connect to DB
+Start up mongod 
 Connect to mongoDB through mongoose
     ```
     const dbUrl = 'mongodb://localhost:27017/meantest';
