@@ -12,4 +12,5 @@ var UserSchema = new mongoose.Schema({
 // parameters: model name, schema name, mongodb collection
     // if the collection isn't supplied, mongoose will use a 
     // lowercase plural version of the model name
-module.exports = mongoose.model('User', UserSchema, 'tech');
+// This will also create the collection for you if it doesn't exist
+module.exports = mongoose.model('User', UserSchema);
