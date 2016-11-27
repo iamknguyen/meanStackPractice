@@ -9,16 +9,18 @@ intitialize git and npm dependencies
 - mongoose
 - mongodb
 - cors
+
 # Step 1: Express
 Set up server.js file
-    - express: ports, listen
-    - middleware and public static files
-        ```
-        app.use(express.static(__dirname + '/../../public'));    
-        ```
+- express: ports, listen
+- middleware and public static files
+    ```
+    app.use(express.static(__dirname + '/../../public'));    
+    ```
+
 # Step 2: Connect to DB
-Start up mongod 
-Connect to mongoDB through mongoose
+- Start up mongod 
+- Connect to mongoDB through mongoose
     ```
     const dbUrl = 'mongodb://localhost:27017/meantest';
     mongoose.connect(dbUrl);
@@ -32,58 +34,61 @@ Connect to mongoDB through mongoose
         console.log('Mongoose connection error ' + err);
     })
     ```
+
 # Step 3: Server Routing
 Set up routes on server
-    - on server.js
-        ```
-        require('./server/config/middleware.js')(app, express);
-        require('./server/config/routes.js')(app, express);
-        ```
-    - on files elsewhere
-        ```
-        const userController = require('../users/userController.js');
-        module.exports = (app, express)=>{
-            app.get('/api/users', userController.getUsers);
-            app.post('/api/users', userController.addUser);
-        }
-        ```
+- on server.js
+    ```
+    require('./server/config/middleware.js')(app, express);
+    require('./server/config/routes.js')(app, express);
+    ```
+- on files elsewhere
+    ```
+    const userController = require('../users/userController.js');
+    module.exports = (app, express)=>{
+        app.get('/api/users', userController.getUsers);
+        app.post('/api/users', userController.addUser);
+    }
+    ```
+
 # Step 4: Server Controllers
-    - Add promises to mongoose since promises have been deprecated
-        ```
-        mongoose.Promise = require('bluebird');
-        ```
-    - Set up controllers for routes
-        ```
-        module.exports = {
-            handleGETrequest: (req, res, next)=>{
-                // get data from DB and send it back
-            },
-            handlePOSTrequest: (req, res, next)=>{
-                // post data from DB
-            }
+- Add promises to mongoose since promises have been deprecated
+    ```
+    mongoose.Promise = require('bluebird');
+    ```
+- Set up controllers for routes
+    ```
+    module.exports = {
+        handleGETrequest: (req, res, next)=>{
+            // get data from DB and send it back
+        },
+        handlePOSTrequest: (req, res, next)=>{
+            // post data from DB
         }
-        ```
+    }
+    ```
+
 # Step 5: Server Models
-    - Set up Models for corresponding routes
-    ```
-    const mySchema = new mongoose.Schema({
-        name: String,
-        age: number
-    })
-    module.exports = mongoose.model('myModel', mySchema);
-    ```
+- Set up Models for corresponding routes
+```
+const mySchema = new mongoose.Schema({
+    name: String,
+    age: number
+})
+module.exports = mongoose.model('myModel', mySchema);
+```
 
 # Step 6: Set up public (client) side
-    - index.html
-        - include angular and angular routing scripts
-        ```
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
-        ```
+- index.html, include angular and angular routing scripts
 
+    ```
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+    ```
 
 # Step 7: Client routing
-    Set up angular module and configure the dependencies for controllers, routing, etc
+Set up angular module and configure the dependencies for controllers, routing, etc
+
     ```
     angular.module('myApp',['myApp.users','ngRoute'])
         .config(($routeProvider, $httpProvider)=>{
@@ -99,7 +104,8 @@ Set up routes on server
     ```
 
 # Step 8: Client controllers 
-    Set up angular controllers and services to handle user intent
+Set up angular controllers and services to handle user intent
+
     ```
     angular.module('myApp.users',[])
     // Do NOT use fat arrow syntax when defining function for controllers
