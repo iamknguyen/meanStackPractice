@@ -1,10 +1,11 @@
 
 
-angular.module('app',['ngRoute'])
+angular.module('myApp',['myApp.users','ngRoute'])
 .config(($routeProvider, $httpProvider)=>{
     $routeProvider
-        .when('/login', {
-            templateUrl: 'app/auth/signin.html'
+        .when('/', {
+            templateUrl: 'app/user/users.html',
+            controller: 'UserController'
         })
         .otherwise({
             redirectTo: './home.html'
