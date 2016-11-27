@@ -16,3 +16,5 @@ Set up express, public static files, and middleware in server.js
 Set up routes
 
 #Step 3
+Set up controllers for routes
+Set up Models for corresponding routes
